@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodemon": "nodemon index.js",
+    "start": "node app.js",
+    "nodemon": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -17,5 +18,9 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=14"
   }
 }

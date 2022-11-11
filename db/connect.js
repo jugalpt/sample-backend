@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 async function connect() {
-  console.log(process.env.DB_URI);
   mongoose
     .connect(process.env.DB_URI)
     .then((_) => {
@@ -13,4 +12,4 @@ async function connect() {
     });
 }
 
-module.exports = { connect };
+export { connect };
