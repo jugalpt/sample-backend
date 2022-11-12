@@ -7,7 +7,7 @@ const createTask = async ({ content, id }) => {
     return { error: "task with the same content already exists" };
   }
 
-  const newTask = await Task.create({ content });
+  const newTask = await Task.create({ content, project: id });
 
   const newTaskId = newTask._doc._id;
 

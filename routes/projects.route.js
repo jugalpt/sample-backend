@@ -5,14 +5,14 @@ import { isProjectExists } from "../middlewares/index.js";
 import {
   projectController,
   getProjectController,
+  getAllProjectsController,
 } from "../controllers/index.js";
 
 const projectsRouter = express.Router();
 
 projectsRouter
-  .get("/", (req, res) => {
-    res.send("list me all the projects");
-  })
+  // get all projects container
+  .get("/", getAllProjectsController)
   // create a project
   .post("/", projectController)
   // get all details of the project

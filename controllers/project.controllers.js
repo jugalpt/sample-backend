@@ -1,4 +1,4 @@
-import { create, getProject } from "../services/index.js";
+import { create, getProject, getAllProjects } from "../services/index.js";
 import { makeResponse } from "../utils/index.js";
 
 const projectController = async (req, res) => {
@@ -7,11 +7,14 @@ const projectController = async (req, res) => {
     const data = await create({ name });
 
     if (data?.error) {
-      res.status(409).json({
-        success: false,
-        error: data.error,
-        message: "project with identical name already exists",
-      });
+      res.status(409).json(
+        makeResponse({
+          status: "SUCCESS",
+          data: null,
+          error: data.error,
+          message: "project with identical name already exists",
+        })
+      );
 
       return;
     }
@@ -65,4 +68,28 @@ const getProjectController = async (req, res) => {
   }
 };
 
-export { projectController, getProjectController };
+const getAllProjectsController = async (req, res) => {
+  try {
+    const projects = await getAllProjects();
+
+    res.status(200).json(
+      makeResponse({
+        status: "SUCCESS",
+        data: { projects: [...projects] },
+        error: null,
+        message: "fetched projects successfully",
+      })
+    );
+  } catch (error) {
+    res.status(500).json(
+      makeResponse({
+        status: "ERROR",
+        data: null,
+        error,
+        message: "internal server error",
+      })
+    );
+  }
+};
+
+export { projectController, getProjectController, getAllProjectsController };

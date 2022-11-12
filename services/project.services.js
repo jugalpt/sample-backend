@@ -1,4 +1,4 @@
-import { Project } from "../models/index.js";
+import { Project, Task } from "../models/index.js";
 
 const create = async ({ name }) => {
   const isNameAlredyExists = await Project.findOne({ name });
@@ -25,4 +25,15 @@ const getProject = async ({ id }) => {
   return project;
 };
 
-export { create, getProject };
+const getAllProjects = async () => {
+  const projects = await Project.find({}).populate({
+    path: "tasks",
+    model: Task,
+  });
+
+  console.log({ projects });
+
+  return projects;
+};
+
+export { create, getProject, getAllProjects };

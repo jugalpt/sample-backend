@@ -5,7 +5,7 @@ import projectsRouter from "./routes/projects.route.js";
 import { connect } from "./db/connect.js";
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
