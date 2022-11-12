@@ -4,12 +4,13 @@ import * as dotenv from "dotenv";
 import projectsRouter from "./routes/projects.route.js";
 import { connect } from "./db/connect.js";
 
+dotenv.config();
+
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-dotenv.config();
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
